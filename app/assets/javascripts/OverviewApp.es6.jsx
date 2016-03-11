@@ -2,26 +2,6 @@ const { $, React, ReactDOM, Redux, ReactRedux,
   ReactBootstrap: { Row, Grid, Panel, Button} } = window;
 
 function OverviewApp () {
-  const initialState = () => {
-    return [
-      {id: "active-conference", name: "wroc_love.rb 2016"},
-      {id: "past-conference", name: "wroc_love.rb 2015"},
-    ];
-  }
-  
-  const update = (state=initialState(), action) => {
-    return state;
-  }
-
-  let store = Redux.createStore(update, initialState());
-  
-  const stateMapper = (state) => {
-    return { conferences: state };
-  }
-  const dispatchMapper = (dispatch) => { return {}; };
-  const connector = ReactRedux.connect(stateMapper, dispatchMapper);
-
-
   const Header = () => { 
     return (
       <h1> <div className="pull-right"> <p>
@@ -58,6 +38,24 @@ function OverviewApp () {
     );
   };
 
+  const initialState = () => {
+    return [
+      {id: "active-conference", name: "wroc_love.rb 2016"},
+      {id: "past-conference", name: "wroc_love.rb 2015"},
+    ];
+  }
+  
+  const update = (state=initialState(), action) => {
+    return state;
+  }
+
+  let store = Redux.createStore(update, initialState());
+  
+  const stateMapper = (state) => {
+    return { conferences: state };
+  }
+  const dispatchMapper = (dispatch) => { return {}; };
+  const connector = ReactRedux.connect(stateMapper, dispatchMapper);
   const ConnectedOverview = connector(Overview);
 
   return { 
